@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Games{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>Game Library</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Max Players</th>
+                <th>Release Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in games %}
+            <tr>
+                <td>{{ game.GameID }}</td>
+                <td><strong>{{ game.Title }}</strong></td>
+                <td>{{ game.Genre }}</td>
+                <td>{{ game.MaxPlayers }}</td>
+                <td>{{ game.ReleaseDate }}</td>
+                <td>
+                    <a href="/game/{{ game.GameID }}" class="btn">View Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Home - Arcade System{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>Welcome to Arcade Management System</h2>
+    <p style="margin-top: 1rem; color: #666;">Team 25: Monisha Sharma (PES2UG23CS906), Nandana Mathew (PES2UG23CS913)</p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <h3>{{ stats.total_players }}</h3>
+        <p>Total Players</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stats.total_games }}</h3>
+        <p>Total Games</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stats.active_sessions }}</h3>
+        <p>Active Sessions</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stats.total_achievements }}</h3>
+        <p>Achievements</p>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="card">
+        <h3>Quick Actions</h3>
+        <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 1rem;">
+            <a href="/players" class="btn">View All Players</a>
+            <a href="/leaderboard" class="btn">View Leaderboard</a>
+            <a href="/games" class="btn">Browse Games</a>
+        </div>
+    </div>
+    
+    <div class="card">
+        <h3>System Features</h3>
+        <ul style="margin-top: 1rem; line-height: 2;">
+            <li>✅ Player Management</li>
+            <li>✅ Game Library</li>
+            <li>✅ Achievement System</li>
+            <li>✅ Multiplayer Sessions</li>
+            <li>✅ Item Inventory</li>
+            <li>✅ Ranking System</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

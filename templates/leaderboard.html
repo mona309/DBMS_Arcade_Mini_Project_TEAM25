@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Leaderboard{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>🏆 Leaderboard - Top Players</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Total Score</th>
+                <th>Rank Tier</th>
+                <th>Achievements</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td><strong>#{{ loop.index }}</strong></td>
+                <td>{{ player.Username }}</td>
+                <td><strong>{{ player.TotalScore }}</strong></td>
+                <td>
+                    <span class="badge badge-{{ player.RankName|lower }}">
+                        {{ player.RankName }}
+                    </span>
+                </td>
+                <td>{{ player.AchievementCount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

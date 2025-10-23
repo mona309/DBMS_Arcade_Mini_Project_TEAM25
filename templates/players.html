@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Players{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>All Players</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Total Score</th>
+                <th>Rank</th>
+                <th>Joined</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.PlayerID }}</td>
+                <td>{{ player.Username }}</td>
+                <td>{{ player.Email }}</td>
+                <td><strong>{{ player.TotalScore }}</strong></td>
+                <td>
+                    <span class="badge badge-{{ player.RankName|lower }}">
+                        {{ player.RankName }}
+                    </span>
+                </td>
+                <td>{{ player.RegistrationDate }}</td>
+                <td>
+                    <a href="/player/{{ player.PlayerID }}" class="btn">View Profile</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

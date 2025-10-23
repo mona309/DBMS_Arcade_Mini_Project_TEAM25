@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}{{ game.Title }}{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ game.Title }}</h2>
+    <p><strong>Genre:</strong> {{ game.Genre }}</p>
+    <p><strong>Max Players:</strong> {{ game.MaxPlayers }}</p>
+    <p><strong>Release Date:</strong> {{ game.ReleaseDate }}</p>
+</div>
+
+<div class="card">
+    <h3>Levels</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Level</th>
+                <th>Difficulty</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for level in levels %}
+            <tr>
+                <td><strong>Level {{ level.LevelNumber }}</strong></td>
+                <td><span class="badge">{{ level.Difficulty }}</span></td>
+                <td>{{ level.Description }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" style="text-align: center;">No levels defined</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h3>Recent Sessions</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Players</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session.SessionID }}</td>
+                <td>{{ session.StartTime }}</td>
+                <td>{{ session.EndTime or 'In Progress' }}</td>
+                <td>{{ session.PlayerCount }}</td>
+                <td>
+                    <a href="/session/{{ session.SessionID }}" class="btn">View</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" style="text-align: center;">No sessions yet</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

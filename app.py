@@ -1,18 +1,17 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import mysql.connector
 from mysql.connector import Error
-import os
 from datetime import datetime
 
 app = Flask(__name__)
 
-# Database configuration - Use environment variables for production
+# Database configuration - Direct values (Update with your MySQL password)
 DB_CONFIG = {
-    'host': os.environ.get('DB_HOST', 'localhost'),
-    'user': os.environ.get('DB_USER', 'root'),
-    'password': os.environ.get('DB_PASSWORD', ''),
-    'database': os.environ.get('DB_NAME', 'arcade'),
-    'port': int(os.environ.get('DB_PORT', 3306))
+    'host': 'localhost',
+    'user': 'root',
+    'password': 'password',  # CHANGE THIS to your MySQL root password
+    'database': 'arcade',
+    'port': 3306
 }
 
 def get_db_connection():

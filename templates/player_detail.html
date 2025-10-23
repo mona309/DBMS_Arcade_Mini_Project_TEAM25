@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ player.Username }} - Profile{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>{{ player.Username }}'s Profile</h2>
+    <div class="grid-2" style="margin-top: 2rem;">
+        <div>
+            <p><strong>Email:</strong> {{ player.Email }}</p>
+            <p><strong>Total Score:</strong> {{ player.TotalScore }}</p>
+            <p><strong>Rank:</strong> <span class="badge badge-{{ player.RankName|lower }}">{{ player.RankName }}</span></p>
+            <p><strong>Joined:</strong> {{ player.RegistrationDate }}</p>
+        </div>
+        <div>
+            <p><strong>Achievement Completion:</strong></p>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: {{ completion }}%"></div>
+            </div>
+            <p style="text-align: center; margin-top: 0.5rem;">{{ "%.1f"|format(completion) }}%</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Achievements ({{ achievements|length }})</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Achievement</th>
+                <th>Description</th>
+                <th>Date Earned</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ach in achievements %}
+            <tr>
+                <td><strong>🏆 {{ ach.Name }}</strong></td>
+                <td>{{ ach.Description }}</td>
+                <td>{{ ach.DateEarned }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" style="text-align: center;">No achievements yet</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="card">
+    <h3>Inventory ({{ items|length }} items)</h3>
+    <div class="item-list">
+        {% for item in items %}
+        <div class="item-card">
+            <div class="badge badge-{{ item.Rarity|lower }}">{{ item.Rarity }}</div>
+            <h4 style="margin: 0.5rem 0;">{{ item.ItemName }}</h4>
+            <p style="font-size: 0.9rem; color: #666;">{{ item.ItemType }}</p>
+            <p><strong>Qty: {{ item.Quantity }}</strong></p>
+        </div>
+        {% else %}
+        <p>No items in inventory</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

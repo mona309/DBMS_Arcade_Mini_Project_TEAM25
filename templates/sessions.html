@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Sessions{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>Multiplayer Sessions</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Session ID</th>
+                <th>Game</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Players</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for session in sessions %}
+            <tr>
+                <td>{{ session.SessionID }}</td>
+                <td><strong>{{ session.GameTitle }}</strong></td>
+                <td>{{ session.StartTime }}</td>
+                <td>
+                    {% if session.EndTime %}
+                        {{ session.EndTime }}
+                    {% else %}
+                        <span class="badge" style="background: #10b981;">In Progress</span>
+                    {% endif %}
+                </td>
+                <td>{{ session.PlayerCount }}</td>
+                <td>
+                    <a href="/session/{{ session.SessionID }}" class="btn">View Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Session {{ session.SessionID }}{% endblock %}
+{% block content %}
+<div class="card">
+    <h2>Session #{{ session.SessionID }}</h2>
+    <p><strong>Game:</strong> {{ session.GameTitle }}</p>
+    <p><strong>Start Time:</strong> {{ session.StartTime }}</p>
+    <p><strong>End Time:</strong> {{ session.EndTime or 'In Progress' }}</p>
+</div>
+
+<div class="card">
+    <h3>Player Scores</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for score in scores %}
+            <tr>
+                <td>
+                    {% if score.Position == 1 %}
+                        🥇
+                    {% elif score.Position == 2 %}
+                        🥈
+                    {% elif score.Position == 3 %}
+                        🥉
+                    {% else %}
+                        #{{ score.Position }}
+                    {% endif %}
+                </td>
+                <td><strong>{{ score.Username }}</strong></td>
+                <td>{{ score.Score }}</td>
+                <td>
+                    <a href="/player/{{ score.PlayerID }}" class="btn">View Profile</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" style="text-align: center;">No players in this session</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
