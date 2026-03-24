@@ -1,0 +1,10 @@
+INSERT IGNORE INTO ranks (rankid, rank_name, rank_score) VALUES (1, 'Bronze', 0);
+INSERT IGNORE INTO ranks (rankid, rank_name, rank_score) VALUES (2, 'Silver', 1000);
+INSERT IGNORE INTO ranks (rankid, rank_name, rank_score) VALUES (3, 'Gold', 5000);
+INSERT IGNORE INTO ranks (rankid, rank_name, rank_score) VALUES (4, 'Platinum', 10000);
+INSERT IGNORE INTO game (gameid, title, genre, max_players, release_date) VALUES (1, 'Space Invaders', 'Arcade', 2, '2020-05-10');
+INSERT IGNORE INTO game (gameid, title, genre, max_players, release_date) VALUES (2, 'Battle Arena', 'Action', 10, '2022-11-20');
+INSERT IGNORE INTO achievement (achievementid, name, description) VALUES (1, 'First Blood', 'Score first kill');
+INSERT IGNORE INTO achievement (achievementid, name, description) VALUES (2, 'Sharp Shooter', '80 percent accuracy');
+INSERT IGNORE INTO item (itemid, item_name, item_type, rarity) VALUES (1, 'Golden Sword', 'Weapon', 'Epic');
+INSERT IGNORE INTO item (itemid, item_name, item_type, rarity) VALUES (2, 'Health Potion', 'Consumable', 'Common');

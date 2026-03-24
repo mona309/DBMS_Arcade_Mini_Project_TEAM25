@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home - Arcade Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>body { background-color: #1a1a2e; color: #e0e0e0; }
+        .navbar { background: linear-gradient(135deg, #16213e, #0f3460) !important; }
+        .table { color: #e0e0e0; } .table-dark { background-color: #16213e; }
+        .table-striped > tbody > tr:nth-of-type(odd) { background-color: rgba(15,52,96,0.5); color: #e0e0e0; }
+        .table-striped > tbody > tr:nth-of-type(even) { background-color: rgba(22,33,62,0.5); color: #e0e0e0; }
+        .btn-arcade { background: linear-gradient(135deg, #e94560, #533483); border: none; color: white; }
+        .btn-arcade:hover { background: linear-gradient(135deg, #533483, #e94560); color: white; }
+        h1, h2 { color: #e94560; }
+        .card { background-color: #16213e; border: 1px solid #0f3460; }
+        .form-control, .form-select { background-color: #16213e; border-color: #0f3460; color: #e0e0e0; }
+        .form-control:focus, .form-select:focus { background-color: #16213e; color: #e0e0e0; border-color: #e94560; }
+        label { color: #a0a0c0; }
+        .alert-success { background-color: #1b4332; border-color: #2d6a4f; color: #95d5b2; }</style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">&#127918; Arcade Management</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/players">Players</a>
+                <a class="nav-link" href="/games">Games</a>
+                <a class="nav-link" href="/achievements">Achievements</a>
+                <a class="nav-link" href="/items">Items</a>
+                <a class="nav-link" href="/sessions">Sessions</a>
+                <a class="nav-link" href="/players/leaderboard">Leaderboard</a>
+            </div>
+        </div>
+    </nav>
+    <div style="background:linear-gradient(135deg,#0f3460,#533483);padding:80px 0;text-align:center;">
+        <div class="container">
+            <h1 style="font-size:3rem;font-weight:bold;color:#e94560;">&#127918; Online Arcade Game Management</h1>
+            <p style="font-size:1.3rem;color:#a0a0c0;">Manage players, games, achievements, items, and multiplayer sessions</p>
+            <a href="/players" class="btn btn-arcade btn-lg mt-3 me-2">View Players</a>
+            <a href="/games" class="btn btn-arcade btn-lg mt-3 me-2">View Games</a>
+            <a href="/players/leaderboard" class="btn btn-arcade btn-lg mt-3">Leaderboard</a>
+        </div>
+    </div>
+    <div class="container mt-5"><div class="row">
+        <div class="col-md-4 mb-4"><a href="/players" class="text-decoration-none" style="color:inherit"><div class="card p-4 text-center" style="transition:transform 0.3s"><h3 style="color:#e94560">&#128100; Players</h3><p style="color:#a0a0c0">Register and manage arcade players</p></div></a></div>
+        <div class="col-md-4 mb-4"><a href="/games" class="text-decoration-none" style="color:inherit"><div class="card p-4 text-center" style="transition:transform 0.3s"><h3 style="color:#e94560">&#127918; Games</h3><p style="color:#a0a0c0">Browse and manage arcade games</p></div></a></div>
+        <div class="col-md-4 mb-4"><a href="/achievements" class="text-decoration-none" style="color:inherit"><div class="card p-4 text-center" style="transition:transform 0.3s"><h3 style="color:#e94560">&#127942; Achievements</h3><p style="color:#a0a0c0">Track player achievements</p></div></a></div>
+        <div class="col-md-4 mb-4"><a href="/items" class="text-decoration-none" style="color:inherit"><div class="card p-4 text-center" style="transition:transform 0.3s"><h3 style="color:#e94560">&#9876; Items</h3><p style="color:#a0a0c0">Manage in-game items</p></div></a></div>
+        <div class="col-md-4 mb-4"><a href="/sessions" class="text-decoration-none" style="color:inherit"><div class="card p-4 text-center" style="transition:transform 0.3s"><h3 style="color:#e94560">&#127922; Sessions</h3><p style="color:#a0a0c0">View multiplayer sessions</p></div></a></div>
+        <div class="col-md-4 mb-4"><a href="/players/leaderboard" class="text-decoration-none" style="color:inherit"><div class="card p-4 text-center" style="transition:transform 0.3s"><h3 style="color:#e94560">&#128202; Leaderboard</h3><p style="color:#a0a0c0">Top 10 players by score</p></div></a></div>
+    </div></div></body></html>
