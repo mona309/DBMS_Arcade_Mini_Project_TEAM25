@@ -35,7 +35,10 @@
         <h1>&#127918; All Games</h1>
         <div th:if="${param.success}" class="alert alert-success">Game added successfully!</div>
         <div th:if="${param.deleted}" class="alert alert-success">Game deleted successfully!</div>
-        <a href="/games/add" class="btn btn-arcade mb-3">Add New Game</a>
+        <div class="mb-3">
+            <a href="/games/add" class="btn btn-arcade">Add New Game</a>
+            <a href="/sessions/add" class="btn btn-secondary ms-2">Start New Session</a>
+        </div>
         <table class="table table-striped table-dark">
             <thead><tr><th>ID</th><th>Title</th><th>Genre</th><th>Max Players</th><th>Release Date</th><th>Actions</th></tr></thead>
             <tbody><tr th:each="game : ${games}">

@@ -1,5 +1,7 @@
 package com.arcade.management.controller;
 import com.arcade.management.model.Item;
+import com.arcade.management.factory.ItemFactory;
+import com.arcade.management.model.Item;
 import com.arcade.management.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,7 +15,11 @@ public class ItemController {
     @GetMapping("/add")
     public String showAddForm(Model model) { model.addAttribute("item", new Item()); return "items/add"; }
     @PostMapping("/add")
-    public String addItem(@ModelAttribute Item item) { itemService.addItem(item); return "redirect:/items?success"; }
+    public String addItem(@ModelAttribute Item itemForm) { 
+        Item processedItem = ItemFactory.createItem(itemForm.getItemName(), itemForm.getItemType(), itemForm.getRarity());
+        itemService.addItem(processedItem); 
+        return "redirect:/items?success"; 
+    }
     @GetMapping("/{id}/delete")
     public String deleteItem(@PathVariable Integer id) { itemService.deleteItem(id); return "redirect:/items?deleted"; }
 }

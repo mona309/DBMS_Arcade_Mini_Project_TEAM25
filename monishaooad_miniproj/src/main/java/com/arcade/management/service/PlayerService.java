@@ -4,6 +4,7 @@ import com.arcade.management.model.Player;
 import java.util.List;
 public interface PlayerService {
     Player registerPlayer(PlayerDTO playerDTO);
+    Player authenticate(String username, String password);
     Player getPlayerById(Integer id);
     List<Player> getAllPlayers();
     Player updatePlayer(Integer id, PlayerDTO playerDTO);

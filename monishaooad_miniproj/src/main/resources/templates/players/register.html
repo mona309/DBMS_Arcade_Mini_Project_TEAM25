@@ -39,6 +39,8 @@
                 <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger small"></span></div>
             <div class="mb-3"><label class="form-label">Email:</label><input type="email" th:field="*{email}" class="form-control" placeholder="Enter email"/>
                 <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger small"></span></div>
+            <div class="mb-3"><label class="form-label">Password:</label><input type="password" th:field="*{password}" class="form-control" placeholder="Enter password"/>
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger small"></span></div>
             <div class="mb-3"><label class="form-label">Avatar URL (optional):</label><input type="text" th:field="*{avatar}" class="form-control"/></div>
             <button type="submit" class="btn btn-arcade w-100">Register</button>
         </form>

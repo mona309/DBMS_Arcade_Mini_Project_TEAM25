@@ -28,6 +28,7 @@ public class PlayerServiceImpl implements PlayerService {
         Player player = new Player();
         player.setUsername(playerDTO.getUsername());
         player.setEmail(playerDTO.getEmail());
+        player.setPassword(playerDTO.getPassword());
         player.setRegistrationDate(LocalDate.now());
         player.setTotalScore(0);
         player.setAvatar(playerDTO.getAvatar());
@@ -37,6 +38,12 @@ public class PlayerServiceImpl implements PlayerService {
     }
     @Override public Player getPlayerById(Integer id) {
         return playerRepository.findById(id).orElseThrow(() -> new PlayerNotFoundException("Player not found with ID: " + id));
+    }
+    @Override
+    public Player authenticate(String username, String password) {
+        return playerRepository.findByUsername(username)
+                .filter(p -> p.getPassword().equals(password))
+                .orElse(null);
     }
     @Override public List<Player> getAllPlayers() { return playerRepository.findAll(); }
     @Override public Player updatePlayer(Integer id, PlayerDTO playerDTO) {

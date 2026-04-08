@@ -28,6 +28,13 @@
                 <a class="nav-link" href="/items">Items</a>
                 <a class="nav-link" href="/sessions">Sessions</a>
                 <a class="nav-link" href="/players/leaderboard">Leaderboard</a>
+                <th:block th:if="${session.loggedInUser != null}">
+                    <span class="nav-link text-warning fw-bold" th:text="'Welcome, ' + ${session.loggedInUser.username}"></span>
+                    <a class="nav-link" href="/logout">Logout</a>
+                </th:block>
+                <th:block th:unless="${session.loggedInUser != null}">
+                    <a class="nav-link" href="/login">Login</a>
+                </th:block>
             </div>
         </div>
     </nav>
