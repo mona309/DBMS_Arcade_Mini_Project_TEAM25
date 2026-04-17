@@ -14,6 +14,8 @@ public class Achievement {
     private String name;
     @Column(length = 255)
     private String description;
+    private String criteriaType;
+    private Integer criteriaValue;
     @OneToMany(mappedBy = "achievement")
     private List<PlayerAchievement> playerAchievements;
     @Override public String toString() { return "Achievement{achievementID=" + achievementID + ", name='" + name + "'}"; }

@@ -13,6 +13,7 @@ public class Rank {
     @Column(length = 50)
     private String rankName;
     private Integer rankScore;
+    private String badge;
     @OneToMany(mappedBy = "rank")
     private List<Player> players;
     @Override public String toString() { return "Rank{rankID=" + rankID + ", rankName='" + rankName + "'}"; }

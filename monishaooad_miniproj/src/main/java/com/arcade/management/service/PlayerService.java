@@ -11,4 +11,7 @@ public interface PlayerService {
     void deletePlayer(Integer id);
     List<Player> getLeaderboard(int limit);
     void updatePlayerScore(Integer playerId, Integer additionalScore);
+    void recordWin(Integer playerId, Integer score);
+    void recordLoss(Integer playerId);
+    void assignItem(Integer playerId, Integer itemId);
 }

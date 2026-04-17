@@ -18,6 +18,8 @@ import java.util.List;
 public class PlayerServiceImpl implements PlayerService {
     @Autowired private PlayerRepository playerRepository;
     @Autowired private RankRepository rankRepository;
+    @Autowired private com.arcade.management.repository.ItemRepository itemRepository;
+    @Autowired private com.arcade.management.repository.PlayerItemRepository playerItemRepository;
 
     @Override
     public Player registerPlayer(PlayerDTO playerDTO) {
@@ -31,6 +33,9 @@ public class PlayerServiceImpl implements PlayerService {
         player.setPassword(playerDTO.getPassword());
         player.setRegistrationDate(LocalDate.now());
         player.setTotalScore(0);
+        player.setWins(0);
+        player.setLosses(0);
+        player.setGamesPlayed(0);
         player.setAvatar(playerDTO.getAvatar());
         Rank bronzeRank = rankRepository.findById(1).orElseThrow(() -> new RuntimeException("Default rank not found"));
         player.setRank(bronzeRank);
@@ -71,5 +76,26 @@ public class PlayerServiceImpl implements PlayerService {
                 break;
             }
         }
+    }
+    @Override public void recordWin(Integer playerId, Integer score) {
+        Player player = getPlayerById(playerId);
+        player.setWins(player.getWins() + 1);
+        player.setGamesPlayed(player.getGamesPlayed() + 1);
+        player.setTotalScore(player.getTotalScore() + score);
+        checkAndUpdateRank(playerId);
+    }
+    @Override public void recordLoss(Integer playerId) {
+        Player player = getPlayerById(playerId);
+        player.setLosses(player.getLosses() + 1);
+        player.setGamesPlayed(player.getGamesPlayed() + 1);
+    }
+    @Override public void assignItem(Integer playerId, Integer itemId) {
+        Player player = getPlayerById(playerId);
+        com.arcade.management.model.Item item = itemRepository.findById(itemId).orElseThrow(() -> new RuntimeException("Item not found"));
+        com.arcade.management.model.PlayerItem pi = new com.arcade.management.model.PlayerItem();
+        pi.setPlayer(player);
+        pi.setItem(item);
+        pi.setDateObtained(java.time.LocalDate.now());
+        playerItemRepository.save(pi);
     }
 }

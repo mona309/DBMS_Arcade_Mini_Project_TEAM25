@@ -32,29 +32,39 @@
     </nav>
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card p-4">
-                    <h2 class="text-center mb-4">Start New Session</h2>
+                    <h2 class="text-center mb-4">Start & Play Session</h2>
                     <div th:if="${games == null or games.isEmpty()}" class="alert alert-info">
                         No games available. <a href="/games/add" class="text-decoration-underline">Add a game first</a> to create sessions.
                     </div>
-                    <form th:action="@{/sessions/add}" method="post" th:if="${games != null and !games.isEmpty()}">
+                    <form th:action="@{/sessions/create}" method="post" th:if="${games != null and !games.isEmpty()}">
                         <div class="mb-3">
-                            <label class="form-label">Game</label>
+                            <label class="form-label">Select Game</label>
                             <select name="gameId" class="form-select" required>
-                                <option value="" disabled selected>Select game</option>
+                                <option value="">Select game</option>
                                 <option th:each="game : ${games}" th:value="${game.gameID}" th:text="${game.title}"></option>
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Start Time (optional)</label>
-                            <input type="datetime-local" name="startTime" class="form-control" />
+                            <label class="form-label">Select Players (at least 2)</label>
+                            <div class="row">
+                                <div class="col-md-6" th:each="p : ${players}">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" th:name="playerIds" th:value="${p.playerID}" th:id="${'p' + p.playerID}"/>
+                                        <label class="form-check-label" th:for="${'p' + p.playerID}" th:text="${p.username}"></label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">End Time (optional)</label>
-                            <input type="datetime-local" name="endTime" class="form-control" />
+                            <label class="form-label">Select Winner</label>
+                            <select name="winnerId" class="form-select" required>
+                                <option value="">Select winner</option>
+                                <option th:each="p : ${players}" th:value="${p.playerID}" th:text="${p.username}"></option>
+                            </select>
                         </div>
-                        <button type="submit" class="btn btn-arcade w-100">Create Session</button>
+                        <button type="submit" class="btn btn-arcade w-100">Create Session & Record Results</button>
                     </form>
                     <a href="/sessions" class="btn btn-secondary w-100 mt-3">Back to sessions</a>
                 </div>

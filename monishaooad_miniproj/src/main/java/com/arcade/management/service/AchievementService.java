@@ -6,4 +6,5 @@ public interface AchievementService {
     Achievement getAchievementById(Integer id);
     List<Achievement> getAllAchievements();
     void deleteAchievement(Integer id);
+    void checkAndUnlockAchievements(Integer playerId);
 }

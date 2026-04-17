@@ -16,4 +16,5 @@ public class PlayerAchievement {
     private Achievement achievement;
     private LocalDateTime dateEarned;
     @Override public String toString() { return "PlayerAchievement{id=" + playerAchievementID + "}"; }
+    public void setUnlockedDate(java.time.LocalDate date) { this.dateEarned = date.atStartOfDay(); }
 }

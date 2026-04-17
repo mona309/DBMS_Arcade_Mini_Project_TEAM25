@@ -16,6 +16,9 @@ public class Item {
     private String itemType;
     @Column(length = 50)
     private String rarity;
+    private Integer bonusScore;
+    private Integer bonusWins;
+    private Boolean consumable;
     @OneToMany(mappedBy = "item")
     private List<PlayerItem> playerItems;
     @Override public String toString() { return "Item{itemID=" + itemID + ", itemName='" + itemName + "'}"; }

@@ -1,6 +1,7 @@
 package com.arcade.management.controller;
 import com.arcade.management.dto.PlayerDTO;
 import com.arcade.management.service.PlayerService;
+import com.arcade.management.service.ItemService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller @RequestMapping("/players")
 public class PlayerController {
     @Autowired private PlayerService playerService;
+    @Autowired private ItemService itemService;
     @GetMapping
     public String listPlayers(Model model) { model.addAttribute("players", playerService.getAllPlayers()); return "players/list"; }
     @GetMapping("/register")
@@ -22,6 +24,17 @@ public class PlayerController {
     }
     @GetMapping("/{id}")
     public String viewPlayer(@PathVariable Integer id, Model model) { model.addAttribute("player", playerService.getPlayerById(id)); return "players/view"; }
+    @GetMapping("/{id}/items")
+    public String assignItemsForm(@PathVariable Integer id, Model model) {
+        model.addAttribute("player", playerService.getPlayerById(id));
+        model.addAttribute("items", itemService.getAllItems());
+        return "players/assign-items";
+    }
+    @PostMapping("/{id}/items")
+    public String assignItems(@PathVariable Integer id, @RequestParam Integer itemId) {
+        playerService.assignItem(id, itemId);
+        return "redirect:/players/" + id + "?itemAssigned";
+    }
     @GetMapping("/{id}/delete")
     public String deletePlayer(@PathVariable Integer id) { playerService.deletePlayer(id); return "redirect:/players?deleted"; }
     @GetMapping("/leaderboard")

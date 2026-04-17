@@ -19,6 +19,12 @@ public class Player {
     @Column(nullable = false)
     private Integer totalScore = 0;
     @Column(nullable = false)
+    private Integer wins = 0;
+    @Column(nullable = false)
+    private Integer losses = 0;
+    @Column(nullable = false)
+    private Integer gamesPlayed = 0;
+    @Column(nullable = false)
     private String password;
     @Column(length = 100)
     private String avatar;

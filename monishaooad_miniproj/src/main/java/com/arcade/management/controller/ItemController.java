@@ -22,4 +22,9 @@ public class ItemController {
     }
     @GetMapping("/{id}/delete")
     public String deleteItem(@PathVariable Integer id) { itemService.deleteItem(id); return "redirect:/items?deleted"; }
+    @PostMapping("/{id}/use")
+    public String useItem(@PathVariable Integer id, @RequestParam Integer playerId) {
+        itemService.useItem(playerId, id);
+        return "redirect:/players/" + playerId + "?itemUsed";
+    }
 }

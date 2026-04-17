@@ -34,7 +34,7 @@
     <div class="container mt-5"><div class="row justify-content-center"><div class="col-md-8"><div class="card p-4">
         <h2 class="text-center mb-4">&#127922; Session Details</h2>
         <table class="table table-borderless">
-            <tr><td style="color:#a0a0c0;font-weight:bold">Session ID:</td><td th:text="${session.sessionID}"></td></tr>
+            <tr><td style="color:#a0a0c0;font-weight:bold">Session ID:</td><td><span th:text="${session?.sessionID}">0</span></td></tr>
             <tr><td style="color:#a0a0c0;font-weight:bold">Game:</td><td th:text="${session.game != null ? session.game.title : 'N/A'}"></td></tr>
             <tr><td style="color:#a0a0c0;font-weight:bold">Start Time:</td><td th:text="${session.startTime}"></td></tr>
             <tr><td style="color:#a0a0c0;font-weight:bold">End Time:</td><td th:text="${session.endTime}"></td></tr>
@@ -47,5 +47,38 @@
             </tr></tbody>
         </table>
         <p th:if="${session.playerSessions == null or session.playerSessions.isEmpty()}" class="text-muted">No players in this session.</p>
-        <a href="/sessions" class="btn btn-arcade">Back to Sessions</a>
+        <div class="mt-4" th:if="${session != null}">
+        <th:block th:if="${session.endTime != null and session.endTime.isAfter(#temporals.createNow())}">
+            <h4 style="color:#e94560;">Join Session</h4>
+            <form method="post" th:action="@{/sessions/{id}/join(id=${session.sessionID})}">
+                <div class="mb-3">
+                    <label class="form-label">Add Player</label>
+                    <select name="playerId" class="form-select" required>
+                        <option value="">Select player</option>
+                        <th:block th:each="p : ${players}">
+                            <option th:if="${p.playerID != null}" th:value="${p.playerID}" th:text="${p.username}"></option>
+                        </th:block>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-arcade">Join</button>
+            </form>
+        </th:block>
+        </div>
+        <div class="mt-4" th:if="${session != null and session.playerSessions != null and not session.playerSessions.isEmpty()}">
+        <th:block th:if="${session.endTime != null and session.endTime.isAfter(#temporals.createNow())}">
+            <form method="post" th:action="@{/sessions/{id}/end(id=${session.sessionID})}">
+                <label class="form-label">Select Winner</label>
+                <select name="winnerId" class="form-select mb-3" required>
+                    <option value="">Select winner</option>
+                    <th:block th:each="ps : ${session.playerSessions}">
+                        <option th:if="${ps.player != null}" th:value="${ps.player.playerID}" th:text="${ps.player.username}"></option>
+                    </th:block>
+                </select>
+                <button type="submit" class="btn btn-success">End Session</button>
+            </form>
+        </th:block>
+        </div>
+        <div class="mt-3">
+            <a href="/sessions" class="btn btn-secondary">Back to Sessions</a>
+        </div>
     </div></div></div></div></body></html>

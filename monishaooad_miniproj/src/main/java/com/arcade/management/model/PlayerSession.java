@@ -15,5 +15,6 @@ public class PlayerSession {
     private Player player;
     private Integer score;
     private Integer position;
+    private Boolean isWinner;
     @Override public String toString() { return "PlayerSession{id=" + playerSessionID + "}"; }
 }

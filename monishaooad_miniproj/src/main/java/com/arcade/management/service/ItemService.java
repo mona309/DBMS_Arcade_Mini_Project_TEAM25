@@ -7,4 +7,5 @@ public interface ItemService {
     List<Item> getAllItems();
     void deleteItem(Integer id);
     List<Item> getItemsByRarity(String rarity);
+    void useItem(Integer playerId, Integer itemId);
 }
